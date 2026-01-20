@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 require_once 'config.php';
 
 $product_id = isset($_GET['id']) ? $_GET['id'] : 1;
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isLoggedIn()) {
 // Lấy comments
 $comments_query = "SELECT c.*, u.username FROM comments c JOIN users u ON c.user_id = u.id WHERE c.product_id = $product_id ORDER BY c.created_at DESC";
 $comments_result = mysqli_query($conn, $comments_query);
-?> -->
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
