@@ -72,7 +72,7 @@ INSERT INTO products (name, description, price, image) VALUES
 ('Keychron K8 Pro', 'Bàn phím cơ không dây', 3200000, 'keychron_k8.jpg'),
 
 ('LG UltraFine 5K', 'Màn hình độ phân giải cao cho designer', 45000000, 'lg_5k.jpg'),
-('Dell UltraSharp U2723QE', 'Màn hình 4K cho công việc chuyên nghiệp', 19000000, 'dell_4k.jpg'),
+('Dell UltraSharp U2723QE', 'Màn hình 4K cho công việc chuyên nghiệp', 19000000, 'dell_4k.jpg');
 
 
 INSERT INTO user_profiles (user_id, phone, address, secret_note) VALUES
