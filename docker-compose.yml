@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80" 
+    depends_on:
+      - db
+    networks:
+      - vuln-network
+
+  db:
+    image: mysql:5.7 
+    container_name: vuln_shop_db
+    environment:
+      MYSQL_DATABASE: vuln_shop
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - vuln-network
+
+networks:
+  vuln-network:
+    driver: bridge
