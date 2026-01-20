@@ -94,15 +94,7 @@ $users_result = mysqli_query($conn, $users_query);
         </div>
 
         <div class="panel">
-            <h2>🌐 URL Fetcher Tool (SSRF Vulnerability)</h2>
-            <div class="hint">
-                💡 <strong>Gợi ý SSRF:</strong><br>
-                - Thử truy cập internal: <code>http://localhost/admin.php</code><br>
-                - Đọc file: <code>file:///etc/passwd</code> (Linux) hoặc <code>file:///C:/Windows/System32/drivers/etc/hosts</code> (Windows)<br>
-                - Internal services: <code>http://127.0.0.1:3306</code> (MySQL), <code>http://169.254.169.254/latest/meta-data/</code> (AWS metadata)<br>
-                - Đọc source code: <code>file://<?php echo __FILE__; ?></code>
-            </div>
-            
+            <h2>🌐 URL Fetcher </h2>          
             <form method="GET" class="ssrf-form">
                 <input type="text" name="fetch_url" placeholder="Enter URL to fetch..." value="<?php echo isset($_GET['fetch_url']) ? htmlspecialchars($_GET['fetch_url']) : ''; ?>">
                 <button type="submit">Fetch URL</button>

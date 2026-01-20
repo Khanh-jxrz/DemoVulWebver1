@@ -1,12 +1,18 @@
 FROM php:8.0-apache
 
-# Cài mysqli
-RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
-# Copy source web (KHÔNG copy database.sql)
 COPY src/ /var/www/html/
+COPY flag.txt /flag/flag.txt
+COPY flag_ssrf.txt /opt/flag_ssrf.txt
 
-# Cấp quyền
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html \
-    && chmod -R 775 /var/www/html/uploads
+RUN echo 'Alias /flag.txt /opt/flag_ssrf.txt' >> /etc/apache2/apache2.conf \
+ && echo '<Directory /opt>' >> /etc/apache2/apache2.conf \
+ && echo '    Require all granted' >> /etc/apache2/apache2.conf \
+ && echo '</Directory>' >> /etc/apache2/apache2.conf
+
+RUN mkdir -p /var/www/html/uploads \
+ && chown -R www-data:www-data /var/www/html /opt \
+ && chmod -R 755 /var/www/html \
+ && chmod 644 /opt/flag_ssrf.txt \
+ && chmod -R 775 /var/www/html/uploads
