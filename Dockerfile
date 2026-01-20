@@ -1,12 +1,12 @@
-# Sử dụng image PHP kèm Apache
 FROM php:8.0-apache
 
-# Cài đặt extension mysqli để kết nối database
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+# Cài mysqli
+RUN docker-php-ext-install mysqli
 
-# Copy toàn bộ source code vào thư mục web root của container
-COPY . /var/www/html/
+# Copy source web (KHÔNG copy database.sql)
+COPY src/ /var/www/html/
 
-# Cấp quyền cho thư mục (để chức năng upload file hoạt động được)
+# Cấp quyền
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+    && chmod -R 755 /var/www/html \
+    && chmod -R 775 /var/www/html/uploads
